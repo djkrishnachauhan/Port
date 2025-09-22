@@ -3,256 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Portfolio</title>
+    <title>[Your Name] - Professional Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
         body {
-            background-color: #f4f4f9;
-            color: #333;
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
+            scroll-behavior: smooth;
         }
 
         .navbar {
-            background-color: #2c3e50;
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .navbar a {
-            color: #ecf0f1;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            font-size: 1.1rem;
-            transition: color 0.3s;
+        .navbar.scrolled {
+            background-color: rgba(30, 41, 59, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .navbar a:hover, .navbar a.active {
-            color: #3498db;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: #ecf0f1;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 80px auto 20px;
-            padding: 20px;
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         }
 
         .tab-content {
-            display: none;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode .tab-content {
-            background: #2c2c2c;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .tab-content.active {
-            display: block;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .project-card {
-            background: #ecf0f1;
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        body.dark-mode .project-card {
-            background: #3a3a3a;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            max-width: 500px;
+        .dark-mode {
+            background-color: #1f2937;
+            color: #e5e7eb;
         }
 
-        .contact-form input, .contact-form textarea {
-            padding: 0.8rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
+        .dark-mode .navbar {
+            background-color: #111827;
         }
 
-        body.dark-mode .contact-form input,
-        body.dark-mode .contact-form textarea {
-            background: #3a3a3a;
-            border-color: #555;
-            color: #e0e0e0;
+        .dark-mode .tab-content {
+            background-color: #374151;
         }
 
-        .contact-form button {
-            padding: 0.8rem;
-            background: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .contact-form button:hover {
-            background: #2980b9;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #2c3e50;
-            color: #ecf0f1;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .navbar a {
-                font-size: 1rem;
-            }
-
-            .container {
-                margin: 100px auto 20px;
-                padding: 10px;
-            }
+        .dark-mode .project-card {
+            background-color: #4b5563;
         }
     </style>
 </head>
-<body>
-    <nav class="navbar">
-        <div class="nav-links">
-            <a href="#home" class="tab-link active" onclick="openTab('home')">Home</a>
-            <a href="#about" class="tab-link" onclick="openTab('about')">About</a>
-            <a href="#projects" class="tab-link" onclick="openTab('projects')">Projects</a>
-            <a href="#contact" class="tab-link" onclick="openTab('contact')">Contact</a>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-all duration-300">
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 w-full z-50 bg-blue-900 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="text-2xl font-bold">[Your Name]</div>
+            <div class="space-x-6">
+                <a href="#home" class="tab-link text-lg hover:text-blue-300 transition active" onclick="openTab('home')">Home</a>
+                <a href="#about" class="tab-link text-lg hover:text-blue-300 transition" onclick="openTab('about')">About</a>
+                <a href="#projects" class="tab-link text-lg hover:text-blue-300 transition" onclick="openTab('projects')">Projects</a>
+                <a href="#contact" class="tab-link text-lg hover:text-blue-300 transition" onclick="openTab('contact')">Contact</a>
+            </div>
+            <button class="theme-toggle text-lg focus:outline-none" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
-        <button class="theme-toggle" onclick="toggleTheme()">🌙 Toggle Theme</button>
     </nav>
 
-    <div class="container">
-        <div id="home" class="tab-content active">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Hello! I'm [Your Name], a passionate [Your Profession] dedicated to creating innovative solutions. Explore my work and get in touch!</p>
+    <!-- Main Content -->
+    <div class="container mx-auto pt-20">
+        <!-- Hero Section -->
+        <div id="home" class="tab-content active hero py-20 text-center text-white">
+            <h1 class="text-5xl font-extrabold mb-4 animate-fadeIn">Welcome to My Portfolio</h1>
+            <p class="text-xl mb-6">Hi, I'm [Your Name], a [Your Profession] crafting innovative and impactful solutions.</p>
+            <a href="#contact" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full text-lg transition">Get in Touch</a>
         </div>
 
-        <div id="about" class="tab-content">
-            <h2>About Me</h2>
-            <p>I'm a [Your Profession] with [X years] of experience in [Your Field]. I specialize in [Your Skills/Expertise]. My mission is to deliver high-quality, impactful work that solves real-world problems.</p>
-            <p>Education: [Your Degree] from [Your University]</p>
-            <p>Skills: [Skill 1], [Skill 2], [Skill 3]</p>
-        </div>
-
-        <div id="projects" class="tab-content">
-            <h2>My Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Project 1</h3>
-                    <p>A brief description of your first project. Highlight key features and technologies used.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Project 2</h3>
-                    <p>A brief description of your second project. Include what makes it unique.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Project 3</h3>
-                    <p>A brief description of your third project. Mention any achievements or impact.</p>
+        <!-- About Section -->
+        <div id="about" class="tab-content py-16 px-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <img src="https://via.placeholder.com/150" alt="Profile" class="w-32 h-32 rounded-full shadow-md">
+                <div>
+                    <p class="text-lg mb-4">I'm a [Your Profession] with [X years] of experience in [Your Field]. My expertise includes [Skill 1], [Skill 2], and [Skill 3]. I’m passionate about solving complex problems and delivering exceptional results.</p>
+                    <p class="text-lg mb-4">Education: [Your Degree] from [Your University]</p>
+                    <p class="text-lg">Skills: [Skill 1], [Skill 2], [Skill 3]</p>
                 </div>
             </div>
         </div>
 
-        <div id="contact" class="tab-content">
-            <h2>Contact Me</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit">Send Message</button>
+        <!-- Projects Section -->
+        <div id="projects" class="tab-content py-16 px-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 text-center">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">Project 1</h3>
+                    <p class="mb-4">A cutting-edge [project type] built with [technologies]. It solves [problem] by [solution].</p>
+                    <a href="#" class="text-blue-500 hover:underline">View Project</a>
+                </div>
+                <div class="project-card bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">Project 2</h3>
+                    <p class="mb-4">An innovative [project type] leveraging [technologies] to achieve [goal].</p>
+                    <a href="#" class="text-blue-500 hover:underline">View Project</a>
+                </div>
+                <div class="project-card bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">Project 3</h3>
+                    <p class="mb-4">A robust [project type] designed for [purpose] using [technologies].</p>
+                    <a href="#" class="text-blue-500 hover:underline">View Project</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="tab-content py-16 px-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 text-center">Contact Me</h2>
+            <form class="max-w-lg mx-auto space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700" required>
+                <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700" required>
+                <textarea placeholder="Your Message" rows="5" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700" required></textarea>
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition">Send Message</button>
             </form>
         </div>
     </div>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-4 text-center">
         <p>&copy; 2025 [Your Name]. All rights reserved.</p>
+        <div class="mt-2 space-x-4">
+            <a href="#" class="text-gray-300 hover:text-blue-300"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="text-gray-300 hover:text-blue-300"><i class="fab fa-github"></i></a>
+            <a href="#" class="text-gray-300 hover:text-blue-300"><i class="fab fa-twitter"></i></a>
+        </div>
     </footer>
 
     <script>
         function openTab(tabName) {
-            // Hide all tab contents
             const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => content.classList.remove('active'));
-
-            // Remove active class from all links
             const tabLinks = document.querySelectorAll('.tab-link');
+
+            tabContents.forEach(content => content.classList.remove('active'));
             tabLinks.forEach(link => link.classList.remove('active'));
 
-            // Show selected tab content and set active link
             document.getElementById(tabName).classList.add('active');
             document.querySelector(`a[href="#${tabName}"]`).classList.add('active');
         }
 
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.theme-toggle i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
         }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 </html>
