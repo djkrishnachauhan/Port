@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Professional Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f7f9fa; margin: 0; }
+    .container { max-width: 880px; margin: 40px auto; background: #fff; padding: 32px; box-shadow: 0 8px 36px rgba(10,20,60,0.13); border-radius: 10px; }
+    h1 { letter-spacing: 2px; color: #0b2341;  }
+    .tabs { display: flex; gap: 10px; }
+    .tablinks { padding: 15px 32px; cursor: pointer; background: #f1f1f1; border: none; font-size: 18px; border-radius: 7px 7px 0 0; color: #0b2341; }
+    .tablinks.active { background: #0b2341; color: #fff; }
+    .tabcontent { display: none; padding: 32px 0; border-top: 2px solid #e5e8ef; }
+    .tabcontent.active { display: block; }
+    .profile { display: flex; align-items: center; gap: 24px; }
+    .profile img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #25568d; }
+    .profile-info h2 { margin: 0; color: #25568d;}
+    .profile-info p { margin-top: 4px; color: #6a7484; }
+    ul { padding-left: 20px; }
+    a { color: #1864c6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    @media (max-width: 600px) {
+      .container { padding: 14px; }
+      .tabs { flex-direction: column; }
+      .tablinks { width: 100%; }
+      .profile { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profile">
+      <img src="https://i.imgur.com/HtrhecK.png" alt="Profile">
+      <div class="profile-info">
+        <h2>आपका नाम</h2>
+        <p>वेब डेवलपर • डिजाइनर • टेक एंथुज़ियास्ट</p>
+      </div>
+    </div>
+    <div class="tabs" style="margin-top:32px">
+      <button class="tablinks active" onclick="openTab(event, 'about')">About</button>
+      <button class="tablinks" onclick="openTab(event, 'skills')">Skills</button>
+      <button class="tablinks" onclick="openTab(event, 'projects')">Projects</button>
+      <button class="tablinks" onclick="openTab(event, 'contact')">Contact</button>
+    </div>
+    <div id="about" class="tabcontent active">
+      <h3>About Me</h3>
+      <p>मैं एक पेशेवर वेब डेवलपर हूं, जिसे आकर्षक वेबसाइट बनाना पसंद है। अपने क्रिएटिव प्रोजेक्ट्स और क्लाइंट्स की जरूरत के अनुसार शानदार सॉल्यूशन्स देना मेरा पैशन है!</p>
+    </div>
+    <div id="skills" class="tabcontent">
+      <h3>Skills</h3>
+      <ul>
+        <li>HTML5, CSS3, JavaScript</li>
+        <li>React, Bootstrap, TailwindCSS</li>
+        <li>Responsive Design, UI/UX Thinking</li>
+        <li>Photoshop, Figma</li>
+      </ul>
+    </div>
+    <div id="projects" class="tabcontent">
+      <h3>Projects</h3>
+      <ul>
+        <li> Landing Page for Startup <br><a href="#">Demo</a></li>
+        <li> Personal Blog <br><a href="#">Demo</a></li>
+        <li> Portfolio Website <br><a href="#">Demo</a></li>
+      </ul>
+    </div>
+    <div id="contact" class="tabcontent">
+      <h3>Contact</h3>
+      <p>📧 ईमेल: example@email.com</p>
+      <p>LinkedIn: <a href="#">linkedin.com/in/username</a></p>
+    </div>
+  </div>
+  <script>
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+      }
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
+</body>
+</html>
