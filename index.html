@@ -1,89 +1,244 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Professional Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Firstname Lastname — Product Designer & Frontend Engineer</title>
+  <meta name="description" content="Firstname Lastname — portfolio of a product designer & frontend engineer. UX-focused, pixel-perfect interfaces and scalable code." />
+  <!-- Tailwind CDN for quick prototyping -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f7f9fa; margin: 0; }
-    .container { max-width: 880px; margin: 40px auto; background: #fff; padding: 32px; box-shadow: 0 8px 36px rgba(10,20,60,0.13); border-radius: 10px; }
-    h1 { letter-spacing: 2px; color: #0b2341;  }
-    .tabs { display: flex; gap: 10px; }
-    .tablinks { padding: 15px 32px; cursor: pointer; background: #f1f1f1; border: none; font-size: 18px; border-radius: 7px 7px 0 0; color: #0b2341; }
-    .tablinks.active { background: #0b2341; color: #fff; }
-    .tabcontent { display: none; padding: 32px 0; border-top: 2px solid #e5e8ef; }
-    .tabcontent.active { display: block; }
-    .profile { display: flex; align-items: center; gap: 24px; }
-    .profile img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #25568d; }
-    .profile-info h2 { margin: 0; color: #25568d;}
-    .profile-info p { margin-top: 4px; color: #6a7484; }
-    ul { padding-left: 20px; }
-    a { color: #1864c6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    @media (max-width: 600px) {
-      .container { padding: 14px; }
-      .tabs { flex-direction: column; }
-      .tablinks { width: 100%; }
-      .profile { flex-direction: column; text-align: center; }
-    }
+    :root{--glass-bg: rgba(255,255,255,0.06);--glass-border: rgba(255,255,255,0.08)}
+    html,body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    .gradient-accent{background:linear-gradient(90deg,#06b6d4,#7c3aed)}
+    /* subtle focus outline for accessibility */
+    :focus{outline:2px solid rgba(99,102,241,0.15);outline-offset:3px}
+    /* dark mode toggle shadow */
+    .card-hover:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+    /* project image placeholder ratio */
+    .ratio-16-9{position:relative;padding-top:56.25%}
+    .ratio-16-9 > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:.5rem}
   </style>
 </head>
-<body>
-  <div class="container">
-    <div class="profile">
-      <img src="https://i.imgur.com/HtrhecK.png" alt="Profile">
-      <div class="profile-info">
-        <h2>आपका नाम</h2>
-        <p>वेब डेवलपर • डिजाइनर • टेक एंथुज़ियास्ट</p>
+<body class="bg-[#071023] text-slate-200 antialiased leading-relaxed">
+  <!-- Container -->
+  <header class="max-w-6xl mx-auto p-6 lg:p-8">
+    <nav class="flex items-center justify-between gap-6">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-full gradient-accent flex items-center justify-center text-white font-semibold">FL</div>
+        <div>
+          <div class="text-sm font-semibold">Firstname Lastname</div>
+          <div class="text-xs text-slate-400">Product Designer · Frontend Engineer</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#about" class="text-sm text-slate-300 hover:text-white">About</a>
+        <a href="#work" class="text-sm text-slate-300 hover:text-white">Work</a>
+        <a href="#skills" class="text-sm text-slate-300 hover:text-white">Skills</a>
+        <a href="#contact" class="text-sm text-slate-300 hover:text-white">Contact</a>
+        <a href="#" class="ml-2 inline-flex items-center px-4 py-2 border border-slate-700 rounded-md text-sm font-medium hover:bg-slate-800">Resume</a>
       </div>
-    </div>
-    <div class="tabs" style="margin-top:32px">
-      <button class="tablinks active" onclick="openTab(event, 'about')">About</button>
-      <button class="tablinks" onclick="openTab(event, 'skills')">Skills</button>
-      <button class="tablinks" onclick="openTab(event, 'projects')">Projects</button>
-      <button class="tablinks" onclick="openTab(event, 'contact')">Contact</button>
-    </div>
-    <div id="about" class="tabcontent active">
-      <h3>About Me</h3>
-      <p>मैं एक पेशेवर वेब डेवलपर हूं, जिसे आकर्षक वेबसाइट बनाना पसंद है। अपने क्रिएटिव प्रोजेक्ट्स और क्लाइंट्स की जरूरत के अनुसार शानदार सॉल्यूशन्स देना मेरा पैशन है!</p>
-    </div>
-    <div id="skills" class="tabcontent">
-      <h3>Skills</h3>
-      <ul>
-        <li>HTML5, CSS3, JavaScript</li>
-        <li>React, Bootstrap, TailwindCSS</li>
-        <li>Responsive Design, UI/UX Thinking</li>
-        <li>Photoshop, Figma</li>
-      </ul>
-    </div>
-    <div id="projects" class="tabcontent">
-      <h3>Projects</h3>
-      <ul>
-        <li> Landing Page for Startup <br><a href="#">Demo</a></li>
-        <li> Personal Blog <br><a href="#">Demo</a></li>
-        <li> Portfolio Website <br><a href="#">Demo</a></li>
-      </ul>
-    </div>
-    <div id="contact" class="tabcontent">
-      <h3>Contact</h3>
-      <p>📧 ईमेल: example@email.com</p>
-      <p>LinkedIn: <a href="#">linkedin.com/in/username</a></p>
-    </div>
-  </div>
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" aria-label="Toggle theme" class="p-2 rounded-md border border-slate-700 hover:bg-slate-800">
+          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v1M12 20v1M4.2 4.2l.7.7M19.1 19.1l.7.7M1 12h1M22 12h1M4.2 19.8l.7-.7M19.1 4.9l.7-.7M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="menuBtn" class="md:hidden p-2 rounded-md border border-slate-700 hover:bg-slate-800" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 lg:px-8">
+    <!-- Hero -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
+      <div class="lg:col-span-7">
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">I design and build beautiful, usable products that scale.</h1>
+        <p class="mt-4 text-slate-300 max-w-2xl">I’m <strong>Firstname Lastname</strong>, a product designer and frontend engineer focused on end-to-end product experiences — from user research and UX to production-ready UI and performance-minded code.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#work" class="inline-flex items-center px-5 py-3 rounded-lg bg-white text-slate-900 font-medium shadow hover:scale-[1.01]">View Work</a>
+          <a href="#contact" class="inline-flex items-center px-5 py-3 rounded-lg border border-slate-700 text-sm">Let’s talk</a>
+        </div>
+        <div class="mt-6 text-sm text-slate-400">Based in: <span class="text-slate-200">City, Country</span> · Available for freelance & full‑time</div>
+        <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-slate-400">
+          <div class="p-3 bg-slate-800 rounded-lg text-center">Design Systems</div>
+          <div class="p-3 bg-slate-800 rounded-lg text-center">Accessible UI</div>
+          <div class="p-3 bg-slate-800 rounded-lg text-center">React & TypeScript</div>
+          <div class="p-3 bg-slate-800 rounded-lg text-center">Performance</div>
+        </div>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="p-1 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-slate-700">
+          <div class="bg-[#062032] p-6 rounded-xl">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Profile mockup" class="w-full rounded-lg shadow-sm object-cover" style="height:360px;object-fit:cover">
+            <div class="mt-4 flex items-start justify-between">
+              <div>
+                <div class="font-semibold">Selected Project: Aurora Design System</div>
+                <div class="text-xs text-slate-400">Design system & component library for B2B dashboard</div>
+              </div>
+              <div class="text-xs text-slate-400">2024 · Case Study</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work / Projects -->
+    <section id="work" class="mb-12">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">Selected Work</h2>
+        <a href="#" class="text-sm text-slate-400 hover:text-white">See all projects →</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Project card -->
+        <article class="bg-[#071828] border border-slate-800 rounded-lg p-5 card-hover transition-transform duration-200">
+          <div class="ratio-16-9 rounded-md overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project screenshot">
+          </div>
+          <h3 class="mt-4 font-semibold">Aurora — Design System</h3>
+          <p class="mt-2 text-slate-400 text-sm">Built a scalable design system with tokenized themes, accessible components, and a React component library consumed by multiple product teams.</p>
+          <div class="mt-3 flex items-center justify-between text-xs text-slate-400">
+            <div>Role: Design & Frontend</div>
+            <div>Tech: Figma · React · Tailwind</div>
+          </div>
+        </article>
+
+        <article class="bg-[#071828] border border-slate-800 rounded-lg p-5 card-hover transition-transform duration-200">
+          <div class="ratio-16-9 rounded-md overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1537432376769-00a6d09f5f90?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project screenshot">
+          </div>
+          <h3 class="mt-4 font-semibold">Insight Dashboard</h3>
+          <p class="mt-2 text-slate-400 text-sm">Redesigned analytics interface to reduce cognitive load and speed up common workflows. Implemented streaming charts and performant data table virtualization.</p>
+          <div class="mt-3 flex items-center justify-between text-xs text-slate-400">
+            <div>Role: Lead Designer</div>
+            <div>Impact: +18% task efficiency</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">Skills & Tools</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+        <div class="p-4 bg-slate-800 rounded-lg text-center">Product Design</div>
+        <div class="p-4 bg-slate-800 rounded-lg text-center">Interaction Design</div>
+        <div class="p-4 bg-slate-800 rounded-lg text-center">Design Systems</div>
+        <div class="p-4 bg-slate-800 rounded-lg text-center">Usability Research</div>
+        <div class="p-4 bg-slate-800 rounded-lg text-center">React · TypeScript</div>
+        <div class="p-4 bg-slate-800 rounded-lg text-center">Performance</div>
+        <div class="p-4 bg-slate-800 rounded-lg text-center">Accessibility</div>
+        <div class="p-4 bg-slate-800 rounded-lg text-center">Tailwind & CSS</div>
+      </div>
+    </section>
+
+    <!-- About / Philosophy -->
+    <section id="about" class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">About</h2>
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-[#071828] p-6 rounded-lg border border-slate-800">
+          <p class="text-slate-300">I focus on designing clear user journeys and shipping production-grade UI. My process blends qualitative research, rapid prototyping, and robust implementation. I collaborate closely with engineering and product to make sure design decisions are measurable and maintainable.</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-400">
+            <li>• Research-led solutions</li>
+            <li>• Design systems & componentization</li>
+            <li>• Performance & accessibility as first-class concerns</li>
+          </ul>
+        </div>
+        <aside class="bg-[#071828] p-6 rounded-lg border border-slate-800">
+          <h4 class="font-semibold">Quick facts</h4>
+          <dl class="mt-3 text-sm text-slate-400 space-y-2">
+            <div>
+              <dt class="text-slate-300">Experience</dt>
+              <dd>6+ years</dd>
+            </div>
+            <div>
+              <dt class="text-slate-300">Availability</dt>
+              <dd>Open to remote</dd>
+            </div>
+            <div>
+              <dt class="text-slate-300">Contact</dt>
+              <dd>email@example.com</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="mb-16">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-[#071828] p-6 rounded-lg border border-slate-800">
+          <h3 class="text-xl font-semibold">Get in touch</h3>
+          <p class="mt-2 text-slate-400">Interested in working together? Tell me about your project — I respond within a few business days.</p>
+          <form class="mt-4 space-y-3" onsubmit="return handleForm(event)">
+            <input required name="name" placeholder="Your name" class="w-full p-3 rounded-md bg-slate-900 border border-slate-800 text-slate-200" />
+            <input required name="email" placeholder="Email" type="email" class="w-full p-3 rounded-md bg-slate-900 border border-slate-800 text-slate-200" />
+            <textarea required name="message" placeholder="Brief message" rows="5" class="w-full p-3 rounded-md bg-slate-900 border border-slate-800 text-slate-200"></textarea>
+            <div class="flex items-center gap-3">
+              <button type="submit" class="px-5 py-3 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-600 text-slate-900 font-semibold">Send message</button>
+              <a href="mailto:email@example.com" class="text-sm text-slate-400">Or email directly</a>
+            </div>
+            <p id="formMsg" class="text-sm text-emerald-400 hidden">Message sent (demo)</p>
+          </form>
+        </div>
+        <div class="bg-[#071828] p-6 rounded-lg border border-slate-800">
+          <h3 class="text-xl font-semibold">Availability & rates</h3>
+          <p class="mt-2 text-slate-400">I take a limited number of engagements each quarter. Rates depend on scope — hourly, project, or retainer options are available. Please reach out with details.</p>
+          <div class="mt-4 text-sm text-slate-400">
+            <div class="mb-2"><strong>Typical engagement:</strong> 6–12 weeks</div>
+            <div><strong>Domain:</strong> B2B SaaS, Analytics, Mobile</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-8 text-center text-slate-500 text-sm">
+      <div>© <span id="year"></span> Firstname Lastname — Built with care. <span class="hidden sm:inline">·</span></div>
+    </footer>
+  </main>
+
   <script>
-    function openTab(evt, tabName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
+    // small UI interactions
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const themeBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    let dark = true;
+    themeBtn.addEventListener('click', ()=>{
+      dark = !dark;
+      if(!dark){
+        document.documentElement.style.setProperty('--glass-bg','rgba(255,255,255,0.9)');
+        document.body.classList.remove('bg-[#071023]');
+        document.body.classList.add('bg-white','text-slate-900');
+        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>';
+      } else {
+        document.documentElement.style.setProperty('--glass-bg','rgba(255,255,255,0.06)');
+        document.body.classList.remove('bg-white','text-slate-900');
+        document.body.classList.add('bg-[#071023]','text-slate-200');
+        themeIcon.innerHTML = '<path d="M12 3v1M12 20v1M4.2 4.2l.7.7M19.1 19.1l.7.7M1 12h1M22 12h1M4.2 19.8l.7-.7M19.1 4.9l.7-.7M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>';
       }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-      }
-      document.getElementById(tabName).classList.add("active");
-      evt.currentTarget.classList.add("active");
+    });
+
+    // Mobile menu (simple)
+    document.getElementById('menuBtn').addEventListener('click', ()=>{
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('open');
+      alert('Mobile menu placeholder — implement offcanvas menu as needed.');
+    });
+
+    // Demo form handler — replace with real endpoint when ready
+    function handleForm(e){
+      e.preventDefault();
+      const msg = document.getElementById('formMsg');
+      msg.classList.remove('hidden');
+      setTimeout(()=> msg.classList.add('hidden'),3000);
+      return false;
     }
   </script>
 </body>
-</html>
+  </html>
+  
